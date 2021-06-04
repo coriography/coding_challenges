@@ -1,3 +1,42 @@
+
+###** PREPROCESS DATES **####
+# write a function called "preprocess_dates" that takes in dates in format 'day abbreviated_month year' ('30th Feb 1997')
+# and returns dates in format 'year-number_month-two_digit_day' ('1997-02-30')
+# input will always consist of valid dates in the expected format
+# "day" may end in "st", "nd", "rd", "th"
+
+# Input: an array of strings 
+# Output: an array of re-formatted strings
+
+# Examples:
+# ['30th Feb 1997','1st Oct 2030','3rd Nov 1876','1st Dec 1865'] => ['1997-02-30','2030-10-01','1876-11-03','1865-12-01']
+
+def preprocessDate(dates):
+    # Write your code here
+    # split input on spaces => list of lists  [['00th', 'ABC', '0000'],['00th', 'ABC', '0000']]
+    # create a dictionary for months
+    # for each date in the dates list,
+        # edit date[0] by 
+            # slicing off last two char
+            # add a 0 if one digit
+        # edit month by changing to dict value
+        # don't edit year
+    
+    months = {"Jan": "01", "Feb": "02", "Mar": "03", "Apr": "04", "May": "05", "Jun": "06", "Jul": "07", "Aug": "08", "Sep": "09", "Oct": "10", "Nov": "11", "Dec": "12"}
+    formatted_dates = [] # creating a new array of formatted data, assuming we want to keep the input data in its original state. if the priority is to save space, I would instead replace each date in the original dates array.
+    
+    for i, date in enumerate(dates):
+        day, month, year = date.split()
+        day = day[0:-2]
+        if len(day) == 1:
+            day = f"0{day}"
+        month = months[month]
+        formatted_dates.append(f"{year}-{month}-{day}")
+            
+    return formatted_dates
+    
+
+###** ARE THEY SPEEDING? **####
 def is_speeding(list_data):
     
     # input at zero = first point
@@ -54,7 +93,8 @@ print(is_speeding([[1, "ABC-123", 1599066000], [2, "ABC-123", 1599066030], [1, "
 
 # speed = Position2 - Position1 / time2 - Time1
 
-# **** Lee interview q ****###
+
+# **** OOP POKER ****###
 # use OOP to design a hand of poker
 # classes: Card(name, value), Hand(5cards), Deck()
 # outside of scope: Game(spread, players), chips/bets()
