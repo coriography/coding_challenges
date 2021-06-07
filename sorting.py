@@ -1,6 +1,6 @@
 def quick_sort(lst):
     # time complexity - worst case: O(n^2); average case: O(nlogn)
-    # general idea: choose a pivot and move items higher or lower then pivot.
+    # general idea: choose a pivot or partition and move items higher or lower then pivot.
     # repeat with each half of the list and so on.
 
     # ** option 1: Hackbright solution ** #
@@ -99,3 +99,50 @@ def insertion_sort(lst):
     # general idea:
 
     pass
+
+def merge_sort(lst):
+    # time complexity - worst case: O(nlogn); average case: O(nlogn)
+    # make_one_sorted_list × number_of_levels = O(n) * O(log n) → O(n log n)
+    # general idea: reduce lists to 0-1 el
+    # recombine by comparint first el of each list and putting lower one first
+
+    if len(lst) > 1:
+        mid = len(lst) // 2
+        left = lst[:mid]
+        right = lst[mid:]
+
+        merge_sort(left)
+        merge_sort(right)
+
+        left_index = right_index = new_index = 0
+
+        # combine left and right into list
+
+        while left_index < len(left) and right_index < len(right):
+            if left[left_index] < right[right_index]:
+                lst[new_index] = left[left_index]
+                left_index += 1
+            else:
+                lst[new_index] = right[right_index]
+                right_index += 1
+            new_index += 1
+
+        # If lists were uneven length, add remainder of longer list
+
+        while left_index < len(left):
+            lst[new_index] = left[left_index]
+            left_index += 1
+            new_index += 1
+
+        while right_index < len(right):
+            lst[new_index] = right[right_index]
+            right_index += 1
+            new_index += 1
+
+    return lst
+
+print(merge_sort([3,6,-1,3,2,-8,4,8,3,8,-3]))
+print(merge_sort([3,6,1,3,2,8,4,8,3,8,3]))
+print(merge_sort([None]))
+print(merge_sort([2]))
+print(merge_sort([0]))
