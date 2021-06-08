@@ -11,6 +11,23 @@ def find_min_change(pocket_change):
     >>> (find_min_change([5,7,1,1,2,3,22]))
     20
     """
+    # [5,7,1,1,2,3,22]
+    #  i
+    #    j
+    # current_min_change = 1
+
+    # start curr_min_change at 1
+    # sort pocket change
+    # iterate through each coin (while pocket_change)
+    # if curr_coin equals curr_min_change, 
+        # increase curr_min_change
+        # increment curr_coin
+    # if curr_coin <= curr_min_change,
+        # sum curr_coin with curr_min_change and all the int below curr_min_change down to 1
+        # if none of these sums equal curr_coin,
+            # return curr_min_change
+        # else
+            # increment curr_coin
 
     return pocket_change
 
