@@ -1,4 +1,22 @@
 
+###** NON-CONSTRUCTIBLE CHANGE **###
+
+# given an array of positive int representing the value of non-unique coins in your pocket, write a function that returns the minimum amount of change you cannot create.
+
+
+def find_min_change(pocket_change):
+    """finds minimum change possible from given pocket change.
+    >>> (find_min_change([1,2,5]))
+    4
+    >>> (find_min_change([5,7,1,1,2,3,22]))
+    20
+    """
+
+    return pocket_change
+
+# print(find_min_change([5,7,1,1,2,3,22])) # 20
+# print(find_min_change([1,2,5])) # 4
+
 ###** PREPROCESS DATES **####
 # write a function called "preprocess_dates" that takes in dates in format 'day abbreviated_month year' ('30th Feb 1997')
 # and returns dates in format 'year-number_month-two_digit_day' ('1997-02-30')
