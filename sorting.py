@@ -118,12 +118,12 @@ def merge_sort(lst):
 
         # combine left and right into list
 
-        while left_index < len(left) and right_index < len(right):
-            if left[left_index] < right[right_index]:
-                lst[new_index] = left[left_index]
+        while left_index < len(left) and right_index < len(right): # iterate until left index and right index reach end of respective lists
+            if left[left_index] < right[right_index]: #compare values
+                lst[new_index] = left[left_index] # replace new index with left val (lower val)
                 left_index += 1
             else:
-                lst[new_index] = right[right_index]
+                lst[new_index] = right[right_index] # replace new index with right val (lower val)
                 right_index += 1
             new_index += 1
 
