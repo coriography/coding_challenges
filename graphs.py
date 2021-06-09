@@ -52,3 +52,28 @@ friends.add_person(cori)
 friends.add_person(brittney)
 friends.add_person(scott)
 friends.set_friends(cori, brittney)
+
+class FriendSearch():
+    def are_connected(self, person1, person2):
+        """Are two people connected? Breadth-first search."""
+
+        possible_nodes = Queue()
+        seen = set()
+        possible_nodes.put(person1) # add p1 to queue
+        seen.add(person1) # add p1 to seen set
+
+        while not possible_nodes.empty(): # while we still have a queue to check
+            person = possible_nodes.get() # remove and return next up from queue
+            print("checking", person)
+            if person is person2: # if person from queue is who we're looking for
+                return True
+            else: # if person from queue is NOT who we're looking for
+                for friend in person.adjacent - seen: # for each person who is friends with our person from queue - EXCEPT those we've already seen
+                    possible_nodes.put(friend) # add them to queue
+                    seen.add(friend) #add them to seen
+                    print("added to queue:", friend)
+        return False
+
+bfs = FriendSearch()
+# bfs.are_connected(brittney, cori)
+# bfs.are_connected(brittney, scott)
