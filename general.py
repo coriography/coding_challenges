@@ -1,4 +1,30 @@
 
+###### ** REPLACE WITH ALPHABET POSITION ** ######
+
+# Given a string, replace every letter with its position in the alphabet.
+
+# If anything in the text isn't a letter, ignore it and don't return it.
+
+# "a" = 1, "b" = 2, etc.
+
+# Example
+# alphabet_position("The sunset sets at twelve o' clock.")
+# Should return "20 8 5 19 21 14 19 5 20 19 5 20 19 1 20 20 23 5 12 22 5 15 3 12 15 3 11" (as a string)
+
+# def alphabet_position(text):
+    
+#     alpha = "abcdefghijklmnopqrstuvwxyz"
+#     text_in_ints = []
+    
+#     for char in text:
+#         char = char.lower()
+        
+#         if char in alpha:
+#             text_in_ints.append(str(alpha.index(char) +1))
+                                
+#     return " ".join(text_in_ints)
+
+
 ####** TAX BRACKETS **####
 
 # TODO: The tax bracket breaks at $86,375 - incomes >= $86,376 are taxed 24%, and incomes <= $86,375 are taxed 22%.
