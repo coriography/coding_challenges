@@ -1,3 +1,19 @@
+def multiplication_table(n):
+    # https://www.codewars.com/kata/534d2f5b5371ecf8d2000a08/train/python
+    
+    table = []
+    
+    for i in range (1, n+1):
+        curr_row = []
+
+        for j in range(1, n+1):
+            # append product of j and i
+            curr_row.append(j*i)
+        table.append(curr_row)
+    
+    return table
+
+
 
 ###### ** REPLACE WITH ALPHABET POSITION ** ######
 
