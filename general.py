@@ -1,52 +1,34 @@
 
 ###### ** ABBREVIATE WORDS ** ######
 
-# def abbreviate(s):
-#     import re
+def abbreviate(s):
+    # print(s)
+
+    def gen_words(s):
+        word = []
+        for c in s:
+            if c.isalpha():
+                word.append(c)
+            else:
+                if word:
+                    yield "".join(word)
+                yield c
+                word = []
+        if word:
+            yield "".join(word)
+
+    def abbreviate_word(word):
+        if len(word) < 4:
+            return word
+        abbreviation = {"first_char": word[0], "length": len(word[1:-1]),
+                        "last_char": word[-1]}
+        return "{first_char}{length}{last_char}".format(**abbreviation)
+
+    # print([word for word in gen_words(s)])
+    return print("".join(abbreviate_word(word) for word in gen_words(s)))
     
-#     # "elephant-rides are really fun!"
-#     #  i      j\
+abbreviate("elephant-rides are really fun!") # => "e6t-r3s are r4y fun!"
 
-#     # split string on spaces
-#     words_of_s = s.split()
-#     print(words_of_s)
-#     # iterate through words
-#     for word in words_of_s:
-#         print(word)
-#         # if word is greater than 3 char,
-#         if len(word) > 3:
-#             ### TWO POINTERS
-#                 # start i at 0
-#             i = 0
-#                 # for j in range(1, len(word) - 1)
-#             for j in range(1, len(word) -1):
-#                 # print("word[j]: ", word[j])
-#                     # if word[j+1] is not alpha, 
-#                 if not word[j+1].isalpha():
-#                     print('not alpha!')
-#                     word = re.split('\W+', word)
-                
-#                 # for w in word:
-#                 #     print(w)
-#                     # first, middle, last = w[i], w[i+1:j-1], w[j]
-#                     # middle = len(middle)
-#                     # new_word = f"{first}{middle}{last}"
-#                     # print(new_word)
-#                         # delete everything between i and j and replace with number
-#                     # else:
-#                         # continue
-            
-#             ### OR SLICING ##! doesn't account for non-alpha
-#                 # slice first, last, and everything else
-#                 # first, middle, last = word[0:1], word[1:-1], word[:-1]
-#                 # print(word)
-#                 # print(middle)
-#                 # replace with length of that slice
-#                 # paste first, length, last together
-            
-#     # return joined split string
-
-# abbreviate("elephant-rides are really fun!") # => "e6t-r3s are r4y fun!"
 
 ###### ** MULTIPLICATION TABLE ** ######
 
