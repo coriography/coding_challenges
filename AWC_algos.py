@@ -1,4 +1,93 @@
 
+###** June 18, 2021 **###
+
+# https://leetcode.com/problems/longest-substring-without-repeating-characters/
+
+# Given a string s, find the length of the longest substring without repeating characters.
+
+# Example 1:
+
+# Input: s = "abcabcbb"
+# Output: 3
+# Explanation: The answer is "abc", with the length of 3.
+# Example 2:
+
+# Input: s = "bbbbb"
+# Output: 1
+# Explanation: The answer is "b", with the length of 1.
+# Example 3:
+
+# Input: s = "pwwkew"
+# Output: 3
+# Explanation: The answer is "wke", with the length of 3.
+# Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
+# Example 4:
+
+# Input: s = ""
+# Output: 0
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+
+        ## !! doesn't work for SPACES
+        # use a dict or str to track previously-counted letters
+        # use a counter to track current count
+        # use a list to track all counts once you hit a repeated letter
+        
+        # initialize all counts list
+        # initialize "seen" container as empty
+        # start count at 0
+        
+        # iterate through s with i
+            # if letter is not in seen,
+                # increase count
+                # add letter to seen
+            # if letter has been seen,
+                # add count to all counts list
+                # reset seen to empty and add this letter
+                # set count to 1
+        
+        # return max of all counts
+        
+        all_consecutive_counts = [] # !! how can I optimize this? keep a running count?
+        seen = "" #!! change this to a dict / abcabc "a"
+        count = 0
+        
+        for letter in s:
+            if letter not in seen:
+                count += 1
+                seen += letter
+            else:
+                all_consecutive_counts.append(count)
+                seen = ""
+                seen += letter
+                count = 1
+                
+        if len(all_consecutive_counts) == 0:
+            return 0
+        else:
+            return max(all_consecutive_counts)
+
+    # !! refactor - returns wrong output
+    # longest_so_far = 0
+    #     # seen = "" # change this to a dict
+    #     seen = {}
+    #     count = 0
+        
+    #     for letter in s:
+    #         if letter not in seen:
+    #             count += 1
+    #             seen[letter] = 1
+    #             print(seen)
+    #         else:
+    #             if count > longest_so_far:
+    #                 longest_so_far = count
+    #             seen = {}
+    #             count = 1
+                
+    #     return longest_so_far
+
+
 ###** June 04, 2021 - PREPROCESS DATES **####
 # TODO: mention mentorship program!!!!!
 
