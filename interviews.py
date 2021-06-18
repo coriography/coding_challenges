@@ -1,4 +1,122 @@
 
+###** ID card validation **###
+
+# Say, an organization issues ID cards to its employees with unique ID codes. The ID code for an employee named Jigarius Caesar looks as follows: CAJI202002196.
+
+# Here’s how the ID code is derived:
+
+# CA: First 2 characters of the employee’s last name.
+# JI: First 2 characters of the employee’s first name.
+# 2020: Full year of joining.
+# 02: 2 digit representation of the month of joining.
+# 19: Indicates that this is the 19th employee who joined in Feb 2020.
+# This will have at least 2 digits, starting with 01, 02, and so on.
+
+# (I didnt do this part with the verification digit)
+# 6: The last digit is a verification digit which is computed as follows:
+# Take the numeric part of the ID code (without the verification digit).
+# Sum all digits in odd positions. Say this is o.
+# Sum all digits in even positions. Say this is E.
+# Difference between O & E. Say this is V.
+# If V is negative, ignore the sign, e.g., -6 is treated as 6. Say this is V.
+# If V is greater than 9, divide it by 10 and take the reminder. Say this is V.
+# V is the verification code.
+
+# Write a command-line program in your preferred coding language that:
+# Allows the user to enter their First name, Last name and ID code.
+# Prints PASS if the ID code seems valid.
+# Prints INVESTIGATE otherwise.
+# Write relevant tests.
+# It is not necessary to use a testing library.
+# You can use your custom implementation of tests.
+# list of valid years
+# list of valid months (01, 02, 03...12)
+
+# define function that takes in first, last, and id as parameters
+# check if first 2 characters of id match first 2 characters of first
+# check if 3rd and 4th characters of id match first 2 characters of last
+# create list of valid years we can check against
+# check if 5th - 8th characters are in valid year list
+# check if 9th-10th characters are in valid month list
+
+def get_user_input():
+    first = input("What is your first name: ")
+    last = input("What is your last name: ")
+    id_code = input("What is your id code?: ")
+
+    return [first, last, id_code]
+
+def check_last(last, id_code):
+    if last[0] == id_code[0] and last[1] == id_code[1]:
+        return True
+    return False
+
+def check_first(first, id_code):   
+    if first[0] == id_code[2] and first[1] == id_code[3]:
+        return True
+    return False
+
+def check_year(id_code):
+    valid_years = ["2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021"]
+    if id_code[4:8] in valid_years:
+        return True
+    return False
+
+def check_month(id_code):
+    valid_months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
+    if id_code[8:10] in valid_months:
+        return True
+    return False
+
+def run_program():
+    first, last, id_code = get_user_input()
+    is_last_valid = check_last(last, id_code)
+    if not is_last_valid:
+        return "INVESTIGATE LAST NAME"
+    is_first_valid = check_first(first, id_code)
+    if not is_first_valid:
+        return "INVESTIGATE FIRST NAME"
+    
+    is_month_valid = check_month(id_code)
+    if not is_month_valid:
+        return "INVESTIGATE MONTH"
+
+    is_year_valid = check_year(id_code)
+    if not is_year_valid:
+        return "INVESTIGATE YEAR"
+
+    return "PASS"
+
+print(check_month("pean202105"))
+
+def test_run_program(first, last, id_code):
+    # first, last, id_code = get_user_input()
+    is_last_valid = check_last(last, id_code)
+    if not is_last_valid:
+        return "INVESTIGATE LAST"
+    is_first_valid = check_first(first, id_code)
+    if not is_first_valid:
+        return "INVESTIGATE FIRST"
+    
+    is_month_valid = check_month(id_code)
+    if not is_month_valid:
+        return "INVESTIGATE MONTH"
+
+    is_year_valid = check_year(id_code)
+    if not is_year_valid:
+        return "INVESTIGATE YEAR"
+
+    return "PASS"
+#expecting pass
+print(test_run_program("anna", "peery", "pean202105"))
+#expecting fail
+print(test_run_program("anna", "peery", "zzee202105"))
+#expecting fail
+print(test_run_program("jen", "brissman", "brjb555599"))
+
+
+
+
 ###** NON-CONSTRUCTIBLE CHANGE **###
 
 # given an array of positive int representing the value of non-unique coins in your pocket, write a function that returns the minimum amount of change you cannot create.
