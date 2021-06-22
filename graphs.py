@@ -1,3 +1,16 @@
+
+###** NOTES **###
+
+# BFS = queue - pop(0)
+# DFS = stack - pop()
+
+# inorder, preorder, postorder traversals - DFS algorithm
+# BFS is algorithm, not traversal - uses vertical or level order traversal
+# “Breadth-first search USES level-order traversal”
+
+
+###** practice: create node and graph classes, search class**###
+
 from queue import Queue
 
 class PersonNode():
