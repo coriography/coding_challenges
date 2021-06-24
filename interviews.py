@@ -1,4 +1,27 @@
 
+
+###** Dedupe array **###
+
+# write a function dedupe array that takes in an array of strings
+# edge cases: empty array, one item in array
+
+# def dedupe_array(list_of_str):
+#     # convert list to set, convert back to an list
+#     set_of_str = set(list_of_str)
+    
+    
+#     # iterate through list
+#     # for each item, if not in dict, add to dict
+#     # if already in dict, don't do anything
+#     # use dict.values() and convert to list
+#     # OR just set strings as keys (unique)
+    
+#     return list(set_of_str)
+
+# print(dedupe_array(['hi', 'hello', 'hi'])) # => ['hi', 'hello']
+# print(dedupe_array(['meow', 'scratch', 'climb'])) # => ['meow', 'scratch', 'climb']
+
+
 ###** ID card validation **###
 
 # Say, an organization issues ID cards to its employees with unique ID codes. The ID code for an employee named Jigarius Caesar looks as follows: CAJI202002196.
