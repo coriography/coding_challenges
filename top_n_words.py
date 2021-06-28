@@ -36,11 +36,6 @@
 
 ## TODO: running instructions
 
-def file_to_str(file_path):
-        """Takes in file path, opens file, and returns file's contents in a string."""
-
-        return open(file_path).read()
-
 
 class TopNWords:
     """A class for a TopNWords object.
@@ -73,6 +68,12 @@ class TopNWords:
         return dict_common_words
 
 
+    def file_to_str(self):
+        """Takes in file path, opens file, and returns file's contents in a string."""
+
+        return open(self.content_path).read()
+
+
     def create_dict_of_content(self):
         """Adds all content words to a dictionary."""
 
@@ -83,32 +84,49 @@ class TopNWords:
 
         dict_content = {}
         # open and read content file (file_to_str)
-        content_string = file_to_str(self.content_path)
+        content_string = self.file_to_str()
         # split by space => list of words
         list_content = content_string.split()
         # iterate through list
         for word in list_content:
         # word to lowercase, strip punctuation
-            word = word.lower().strip(punctuation)
+            word = word.strip(punctuation)
+            if word != "I":
+                word = word.lower()
             # if punctuation is alone (e.g. "-" surrounded by spaces), don't count it
             if len(word) > 0:
                 # add each word to dict or increment val by 1 if already in dict
                 dict_content[word] = dict_content.get(word, 0) + 1
 
+        return dict_content
+
+
     def print_top_n_words(self):
-        pass
+
+        dict_common_words = self.create_dict_of_common_words()
+        dict_content = self.create_dict_of_content()
 
         # sort dict by frequency (values)
-        # print word/count in format
-        # iterate through the tuples while count < n
-        # keep a count
-        # if word appears in common words dict, skip it
-        # if not, increase count until n and print tuple
+        content_sorted_by_frequency = sorted(dict_content.items(), key=lambda x: x[1], reverse=True)
+
+        # print heading as indicated
+        print("\nCount / Word\n ===   ===")
+
+        # iterate through the dict while count < n
+        n_count = 0
+
+        for word_key, word_val in content_sorted_by_frequency:
+            if n_count < self.n:
+            # if word appears in common words dict, skip it
+            # if word is not in the common words dictionary, increase count and print
+                if word_key not in dict_common_words:
+                    print(word_key, ": ", word_val)
+                    n_count += 1
+            
 
 
 t = TopNWords("alice_in_wonderland.txt", "1-1000.txt", 15)
-t.create_dict_of_common_words()
-t.create_dict_of_content()
+t.print_top_n_words()
 
 
 if __name__ == "__main__":
