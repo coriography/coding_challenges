@@ -57,11 +57,10 @@ class TopNWords:
         self.n = n
 
         
-    def create_dict_of_common_words(self, file_path):
+    def create_dict_of_common_words(self):
         """Adds all common words to a dictionary."""
 
-        # common_words = file_to_str(file_path)
-        common_words = open(file_path)
+        common_words = open(self.common_words_path)
 
         # add common words to their own dict
         dict_common_words = {}
@@ -75,16 +74,26 @@ class TopNWords:
 
 
     def create_dict_of_content(self):
-        
-        # TODO: deal with non-content file contents (e.g. title, intro)
-        # open and read content file (file_to_str)
-        # strip punctuation - regex? or python non-alpha char?
-        # replace punctuation with space??? but not hyphenated words? possessives?
-        # all to lowercase
-        # split by space => list of words
-        # iterate through list
-        # add each word to dict or increment val by 1 if already in dict (use .get())
+        """Adds all content words to a dictionary."""
 
+        # TODO: deal with non-content file contents (e.g. title, intro)
+        # TODO: deal with double-dash ("--") (replace with space)
+
+        from string import punctuation
+
+        dict_content = {}
+        # open and read content file (file_to_str)
+        content_string = file_to_str(self.content_path)
+        # split by space => list of words
+        list_content = content_string.split()
+        # iterate through list
+        for word in list_content:
+        # word to lowercase, strip punctuation
+            word = word.lower().strip(punctuation)
+            # if punctuation is alone (e.g. "-" surrounded by spaces), don't count it
+            if len(word) > 0:
+                # add each word to dict or increment val by 1 if already in dict
+                dict_content[word] = dict_content.get(word, 0) + 1
 
     def print_top_n_words(self):
         pass
@@ -98,7 +107,8 @@ class TopNWords:
 
 
 t = TopNWords("alice_in_wonderland.txt", "1-1000.txt", 15)
-t.create_dict_of_common_words("1-1000.txt")
+t.create_dict_of_common_words()
+t.create_dict_of_content()
 
 
 if __name__ == "__main__":
