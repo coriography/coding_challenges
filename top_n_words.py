@@ -46,20 +46,41 @@ class TopNWords:
 
     """
 
-    def __init__(self, content_url, common_words_url, n):
-        self.content_url = content_url
-        self.common_words_url = common_words_url
+    def __init__(self, content_path, common_words_path, n):
+        self.content_path = content_path
+        self.common_words_path = common_words_path
         self.n = n
 
     def file_to_str(file_path):
-        """Takes in file path, opens file, and turns the file's contents into a string."""
+        """Takes in file path, opens file, and returns file's contents in a string."""
 
-        file_contents = open(file_path).read()
+        return open(file_path).read()
+        
+    def create_dict_of_common_words():
+        pass
+        # add common words to their own dict
+        # for line in file, dict.get()
 
-        return file_contents
+    def create_dict_of_content():
+        pass
+
+        # open and read content file (file_to_str)
+        # strip punctuation - regex? or python non-alpha char?
+        # replace punctuation with space??? but not hyphenated words? possessives?
+        # all to lowercase
+        # split by space => list of words
+        # iterate through list
+        # add each word to dict or increment val by 1 if already in dict (use .get())
 
     def print_top_n_words():
         pass
+
+        # sort dict by frequency (values)
+        # print word/count in format
+        # iterate through the tuples while count < n
+        # keep a count
+        # if word appears in common words dict, skip it
+        # if not, increase count until n and print tuple
 
 
 if __name__ == "__main__":
