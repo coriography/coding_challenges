@@ -34,14 +34,19 @@
 
 # Plan to spend an hour or less, include the instructions to run it at the top of your gist in the form of comments. 
 
-
 ## TODO: running instructions
+
+def file_to_str(file_path):
+        """Takes in file path, opens file, and returns file's contents in a string."""
+
+        return open(file_path).read()
+
 
 class TopNWords:
     """A class for a TopNWords object.
 
     >>> t = TopNWords("corilint.url", "testing.url", 15)
-    >>> t.content_url
+    >>> t.content_path
     'corilint.url'
 
     """
@@ -51,19 +56,27 @@ class TopNWords:
         self.common_words_path = common_words_path
         self.n = n
 
-    def file_to_str(file_path):
-        """Takes in file path, opens file, and returns file's contents in a string."""
-
-        return open(file_path).read()
         
-    def create_dict_of_common_words():
-        pass
+    def create_dict_of_common_words(self, file_path):
+        """Adds all common words to a dictionary."""
+
+        # common_words = file_to_str(file_path)
+        common_words = open(file_path)
+
         # add common words to their own dict
-        # for line in file, dict.get()
+        dict_common_words = {}
+        
+        for word in common_words:
+            word = word.rstrip()
+            # dict_common_words[word] = dict_common_words.get(word, 0) +1
+            dict_common_words[word] = 1
 
-    def create_dict_of_content():
-        pass
+        return dict_common_words
 
+
+    def create_dict_of_content(self):
+        
+        # TODO: deal with non-content file contents (e.g. title, intro)
         # open and read content file (file_to_str)
         # strip punctuation - regex? or python non-alpha char?
         # replace punctuation with space??? but not hyphenated words? possessives?
@@ -72,7 +85,8 @@ class TopNWords:
         # iterate through list
         # add each word to dict or increment val by 1 if already in dict (use .get())
 
-    def print_top_n_words():
+
+    def print_top_n_words(self):
         pass
 
         # sort dict by frequency (values)
@@ -81,6 +95,10 @@ class TopNWords:
         # keep a count
         # if word appears in common words dict, skip it
         # if not, increase count until n and print tuple
+
+
+t = TopNWords("alice_in_wonderland.txt", "1-1000.txt", 15)
+t.create_dict_of_common_words("1-1000.txt")
 
 
 if __name__ == "__main__":
