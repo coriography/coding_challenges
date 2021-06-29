@@ -1,3 +1,6 @@
 .gitignore
 .DS_Store
 __pycache__
+img/
+.vscode
+test.txt
