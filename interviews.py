@@ -1,4 +1,73 @@
 
+###** Author History from API **###
+
+# Complete the 'getAuthorHistory' function below.
+#
+# The function is expected to return a STRING_ARRAY.
+# The function accepts STRING author as parameter.
+#
+# Base urls:
+#   https://jsonmock.hackerrank.com/api/article_users?username=
+#   https://jsonmock.hackerrank.com/api/articles?author=
+#
+
+import requests
+
+def getAuthorHistory(author):
+    # initialize history as array to store list of strings
+    # query API to retrieve author data
+    # store about field IF it has a value
+    # query API to retrieve list of author's articles
+    # add title from each record to history array
+        # if title is empty or none, use story_title
+        # if both are empty or none, ignore record
+    # fetch all data based on total_pages count and repeat last two steps
+    # return history
+
+    history = []
+    
+    base_users_url = "https://jsonmock.hackerrank.com/api/article_users?username="
+    my_users_url = base_users_url + author
+    
+    r = requests.get(my_users_url)
+    json_response = r.json()
+    users_data = json_response["data"][0]
+    
+    about_author = users_data.get("about", None)
+    
+    if about_author != None and about_author != "":
+        history.append(about_author)
+        
+    
+    base_articles_url = "https://jsonmock.hackerrank.com/api/articles?author="
+    my_articles_url = base_articles_url + author
+    
+    r_articles = requests.get(my_articles_url)
+    json_response_articles = r_articles.json()
+
+    total_pages = json_response_articles["total_pages"]
+
+    for i in range(1, total_pages + 1):
+        ## update URL to page i
+        my_articles_url += "&page={i}"
+        r_articles = requests.get(my_articles_url)
+        json_response_articles = r_articles.json()
+
+        data_articles = json_response_articles["data"]
+        
+        for article in data_articles:
+            get_title = article.get("title", "story_title")
+            if get_title != None and get_title != "":
+                history.append(get_title)
+    
+        
+    return history
+
+print(getAuthorHistory("epaga"))
+print(getAuthorHistory("saintamh"))
+print(getAuthorHistory("olalonde"))
+
+
 
 ###** Restocking the Warehouse **###
 
