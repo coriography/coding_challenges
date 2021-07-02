@@ -92,6 +92,41 @@ w.receive_todays_supply([10, 20, 30, 40, 15], 80)
 # print(w.__dict__)
 
 
+import unittest
+class TestWarehouse(unittest.TestCase):
+    def setUp(self):
+        self.w = Warehouse()
+        self.n = 0
+
+    def tearDown(self):
+        self.w = Warehouse()
+        self.n += 1
+        print(self.n)
+
+    def test_receive_todays_supply(self):
+        supply = [10, 20, 30, 40, 15]
+        target = 80
+        expected_excess = 20
+        expected_deficit = 0
+        self.w.receive_todays_supply(supply, target)
+        with self.subTest(msg="excess"):
+            self.assertEqual(expected_excess, self.w.excess, "incorrect")
+        with self.subTest(msg="deficit"):
+            self.assertEqual(expected_deficit, self.w.deficit, "incorrect")
+
+    def test_empty_supply(self):
+        supply = None
+        target = None
+        self.assertRaises(
+            ValueError,
+            self.w.receive_todays_supply,
+            supply, target
+            )
+        
+
+
+if __name__ == '__main__':
+    unittest.main()
 
 
 ###** 6/25/21 - Bounded Ratio **###
