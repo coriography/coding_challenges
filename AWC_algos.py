@@ -55,6 +55,42 @@ def restock(item_count, target):
     return abs(current_count - target)
 
 
+class Warehouse:
+    
+    def __init__(self):
+        self.inventory = 0 # int - how many units we have
+        self.target = 0
+        self.excess = 0
+        self.deficit = 0
+        self.supply = None
+
+    def receive_todays_supply(self, supply:list, target:int):
+        if not supply:
+            raise ValueError("Cannot accept empty supply")
+        self.supply = supply
+        self.target = 0 if target < 0 else target
+        self.restock_supply()
+        print(f"{self.excess=}, {self.deficit=}")
+    
+    def restock_supply(self):
+        for item in self.supply:
+            self.inventory += item
+            if self.inventory > self.target:
+                break
+        self.set_excess_or_deficit()
+
+    def set_excess_or_deficit(self):
+        value = self.inventory - self.target
+        if value > 0:
+            self.excess = value
+        else:
+            self.deficit = abs(value)
+
+        
+w = Warehouse()
+w.receive_todays_supply([10, 20, 30, 40, 15], 80)
+# print(w.__dict__)
+
 
 
 
