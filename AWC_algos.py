@@ -1,4 +1,63 @@
 
+
+###** July 2, 2021 - restocking the warehouse **###
+
+###** Restocking the Warehouse **###
+
+
+# A purchasing manager must buy a specific number of units of an item to replenish the warehouse. The primary supplier has a list of containers, each with a number of units. The manager must purchase full containers in order, starting at container 0 and continuing until at least the desired number has been purchased. If there are not enough units available in the supplier's containers, they must be purchased from another supplier. If, on the other hand, any extra items are purchased, they must be resold. Determine the remaining number of items to be purchased or sold after purchasing from the primary supplier.
+
+# Example
+# itemCount = [10, 20, 30, 40, 15]
+# target = 80
+
+# The manager starts buying at index 0 and continues until all available units are purchased or until at least 80 units have been purchased. The manager will buy containers with itemCounts = 10 + 20 + 30 + 40 = 100. Since too many items were purchased, the number sold is purchased - target = 100 - 80 = 20 units.
+
+# If the target = 130, the manager will purchase all of the units from the primary supplier for a total of purchases = 115.  Then another target - purchases = 130 - 115 = 15 additional units must be purchased.
+
+# Function Description
+
+# Complete the function restock in the editor below.
+
+# restock has the following parameter(s):
+#     int itemCount[n]:  an array of integers that denote the item counts of the each container in the order they must be purchased
+#    int : target: an integer that denotes the target number of items needed
+# Returns:
+#     int:  number of units that must be resold or that must be purchased from an alternate supplier.
+
+# Constraints
+
+# 1 ≤ number of items in itemCount ≤ 105
+# 1 ≤ target ≤ 109
+# 1 ≤ itemCount[i] ≤ 109
+#
+# Complete the 'restock' function below.
+#
+# The function is expected to return an INTEGER.
+# The function accepts following parameters:
+#  1. INTEGER_ARRAY itemCount
+#  2. INTEGER target
+#
+
+def restock(item_count, target):
+    # iterate through itemCount and add 
+    # stop when current count is >= target OR end of itemCount
+    # compare current count to target and return difference
+    
+    current_count = 0
+    
+    for container_count in item_count:
+        if current_count < target:
+            current_count += container_count
+        else:
+            break
+    
+    return abs(current_count - target)
+
+
+
+
+
 ###** 6/25/21 - Bounded Ratio **###
 # You are given an array of integers a and two integers l and r. You task is to calculate a boolean array b, where b[i] = true if there exists an integer x, such that a[i] = (i + 1) * x and l ≤ x ≤ r. Otherwise, b[i] should be set to false.
 
@@ -11,18 +70,18 @@
 # For a[3] = 16, there is no an integer 1 ≤ x ≤ 3, such that 4 * x = 16, so b[3] = false.
 # For a[4] = 5, we can choose x = 1 because 5 * 1 = 5 and 1 ≤ 1 ≤ 3, so b[4] = true.
 
-def boundedRatio(array, l, r):
+# def boundedRatio(array, l, r):
     
-    result = []
+#     result = []
     
-    for i in range(len(array)):
-        # i+1 * x == array[i]
-        x = array[i] / (i+1)
-        result.append(l <= x <= r and x == int(x))
+#     for i in range(len(array)):
+#         # i+1 * x == array[i]
+#         x = array[i] / (i+1)
+#         result.append(l <= x <= r and x == int(x))
 
-    return result
+#     return result
 
-print(boundedRatio([8, 5, 6, 16, 5], 1, 3)) # => [false, false, true, false, true]
+# print(boundedRatio([8, 5, 6, 16, 5], 1, 3)) # => [false, false, true, false, true]
 
 
 ###** June 18, 2021 **###
