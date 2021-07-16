@@ -1,4 +1,78 @@
 
+###** July 16, 2021 - Move Zeroes **###
+
+# Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+
+# Note that you must do this in-place without making a copy of the array.
+
+# def moveZeroes(nums):
+#     i, j = 0, 0 # i deals with incrementing, j deals with zeroes
+    
+#     # for as many times as length of nums,
+#         # if nums[i] is zero, 
+#             # pop it off and add to end
+#             # don't increment i
+#         # else if nums[i] not zero,
+#             # increment i
+    
+#     # if len(nums) <= 1:
+#     #     return nums
+        
+#     while i < len(nums):
+#         i += 1
+#         if nums[j] == 0:
+#             nums.append(nums.pop(j)) #!! popping from middle is inefficient
+#         else:
+#             j += 1
+            
+#     return nums
+    
+
+# def moveZeroes(nums):
+
+#     ### another solution: SWAP
+    
+#         # traverse array and keep track of first zero in arr; swap it with current non-zero element
+        
+#         # [1,3,0,0,12]
+#         #      1
+#         #          i
+        
+#     index_of_first_zero = 0
+        
+#     for i in range(0, len(nums)):
+#         if nums[i] != 0:
+#             nums[i], nums[index_of_first_zero] = nums[index_of_first_zero], nums[i]
+#             index_of_first_zero += 1
+
+#     return nums
+
+#* creative slicing solution from Rachael Gunter
+# def moveZeroes(list):
+#     count = 0
+#     while 0 in list[count:]: 
+#         if 0 in list:
+#             list.append(0)
+#             index = list.index(0)
+#             list.pop(index)
+#             count += 1
+#     return list
+
+#* JS solution from Travis Prol
+# function algoPractice(arr, n)
+# {
+#     let count = 0; 
+#     for (let i = 0; i < n; i++)
+#         if (arr[i] != 0)
+#             arr[count++] = arr[i]; 
+#     while (count < n)
+#         arr[count++] = 0;
+# }
+
+moveZeroes([0,1,0,3,12]) # => [1,3,12,0,0]
+moveZeroes([0]) # => [0]
+moveZeroes([0,0,1]) # => [1,0,0]
+
 
 ###** July 9, 2021 - Alternating Sort **###
 
