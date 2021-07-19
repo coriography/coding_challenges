@@ -1,3 +1,5 @@
+\***all credit to [Yaakov](https://github.com/ybressler/teaching/tree/main/classes)**\*
+
 This module contains information + is a guide for how and when to use
 classes in python.
 
