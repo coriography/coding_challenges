@@ -1,8 +1,16 @@
 class RecruitingTool:
 
     def __init__(self) -> None:
-        pass
+        self.candidate_data_path = None
+        self.candidate_data = None
         # set all attributes to 0 or None
+
+    def import_candidate_data(self, path):
+        # read json file and set data as attribute
+        import json
+        self.candidate_data_path = path
+        json_file = open(self.candidate_data_path)
+        self.candidate_data = json.load(json_file)
 
     def is_senior_role():
         pass
@@ -37,3 +45,8 @@ class RecruitingTool:
     def print_candidate_info():
         pass
         # print candidate info
+
+
+r = RecruitingTool()
+r.import_candidate_data("work_experience.json")
+print(r.__dict__)
