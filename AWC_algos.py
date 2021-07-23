@@ -1,4 +1,62 @@
 
+###** July 23, 2021 - longest prefix **###
+
+# Write a function to find the longest common prefix string amongst an array of strings.
+# If there is no common prefix, return an empty string "".
+
+# longestCommonPrefix(["flower","flow","flight"]) # => "fl"
+# longestCommonPrefix([""]) # => ""
+# longestCommonPrefix(["guppy"]) # => "guppy"
+
+def longestCommonPrefix(list_of_words):
+        
+         # while j < len(first_word) ???????
+            # for each string, starting at index 1,
+                # if string at index j is the same as the first string's index j, 
+                    # continue to next string
+                # else, exit and return
+            # increment j
+            # increment prefix count
+        # return
+        
+        # ["flower","flow","flight"]
+        #            word
+        #   j = 0
+        
+    j = 0
+    first_word = list_of_words[0]
+    prefix = ""
+    
+    if len(list_of_words) == 1:
+        return first_word
+    
+    while j < len(first_word):
+    
+        for i in range(1, len(list_of_words)):
+
+            word = list_of_words[i]
+            
+            if j < len(word):
+            
+                curr_letter = word[j]
+
+                if curr_letter == first_word[j]:
+                    pass
+                else:
+                    return prefix
+            else:
+                return prefix
+
+        j += 1
+        prefix += curr_letter
+    
+    return prefix
+
+longestCommonPrefix(["flower","flow","flight"]) # => "fl"
+longestCommonPrefix([""]) # => ""
+longestCommonPrefix(["guppy"]) # => "guppy"
+
+
 ###** July 16, 2021 - Move Zeroes **###
 
 # Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.
