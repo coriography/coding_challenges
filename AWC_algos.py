@@ -10,7 +10,7 @@
 
 def longestCommonPrefix(list_of_words):
         
-         # while j < len(first_word) ???????
+        # while j < len(first_word) ???????
             # for each string, starting at index 1,
                 # if string at index j is the same as the first string's index j, 
                     # continue to next string
@@ -51,6 +51,22 @@ def longestCommonPrefix(list_of_words):
         prefix += curr_letter
     
     return prefix
+
+##** alternate solution with sorting
+    # if not strs:
+    #     return ""
+    
+    # strs.sort()
+    
+    # result = []
+    
+    # for idx, char in enumerate(strs[0]):
+    #     if char == strs[-1][idx]:
+    #         result.append(char)
+    #     else:
+    #         break
+    
+    # return "".join(result)
 
 longestCommonPrefix(["flower","flow","flight"]) # => "fl"
 longestCommonPrefix([""]) # => ""
