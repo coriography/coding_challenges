@@ -18,6 +18,19 @@ def containsDuplicate(nums: List[int]) -> bool:
                 
         # return False
 
+        # sort nums
+        # iterate thruogh
+        # if current is same as next, return true
+        # else continue
+        
+        # nums.sort()
+        
+        # for i in range(1, len(nums)):
+        #     if nums[i] == nums[i-1]:
+        #         return True
+            
+        # return False
+
 ###** move zeroes **###
 
 # https://leetcode.com/explore/interview/card/top-interview-questions-easy/92/array/567/
