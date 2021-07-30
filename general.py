@@ -1,4 +1,23 @@
 
+###** contains duplicate **###
+# https://leetcode.com/problems/contains-duplicate/
+
+def containsDuplicate(nums: List[int]) -> bool:
+        # iterate through vals
+        # if in dict, return true
+        # else add to dict and continue
+        # return false
+        
+        # d_nums = {}
+        
+        # for num in nums:
+        #     if num in d_nums:
+        #         return True
+        #     else:
+        #         d_nums[num] = 1
+                
+        # return False
+
 ###** move zeroes **###
 
 # https://leetcode.com/explore/interview/card/top-interview-questions-easy/92/array/567/
