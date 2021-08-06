@@ -29,21 +29,36 @@
 
 # return results list
 
-def intersectionOfArrays(nums1, nums2):
+# def intersectionOfArrays(nums1, nums2):
 
-    nums1_dict = {}
-    intersection = []
+#     nums1_dict = {}
+#     intersection = []
 
-    for num in nums1:
-        nums1_dict[num] = nums1_dict.get(num, 0) + 1
+#     for num in nums1:
+#         nums1_dict[num] = nums1_dict.get(num, 0) + 1
     
-    for num2 in nums2:
-        if num2 in nums1_dict and nums1_dict[num2]:
-            intersection.append(num2)
-            nums1_dict[num2] -= 1
+#     for num2 in nums2:
+#         if num2 in nums1_dict and nums1_dict[num2]:
+#             intersection.append(num2)
+#             nums1_dict[num2] -= 1
             
-    return intersection
+#     return intersection
 
+# start a pointer at the beginning of both arrays, i and j
+# sort both arrays in ascending order
+# if nums1[i] and nums2[j] have the same value,
+# add that value to the result list
+# AND increment both pointers
+# if nums1[i] and nums2[j] have different values, 
+# increment the pointer at the lower value
+# 
+# OR -- if nums1[i] < nums2[j],
+# increment i
+# and if nums2[j] < nums1[i],
+# increment j
+# 
+# stop when i equals the length of nums1
+# # and j equals the lenght of nums2
 
 ###** July 23, 2021 - longest prefix **###
 
