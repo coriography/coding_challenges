@@ -1,4 +1,50 @@
 
+###** August 5, 2021 - intersection of two arrays II **###
+
+# Given two integer arrays nums1 and nums2, return an array of their intersection. Each element in the result must appear as many times as it shows in both arrays and you may return the result in any order.
+
+# intersectionOfArrays([1,2,2,1], [2,2]) => [2,2]
+# intersectionOfArrays([4,9,5], [9,4,9,8,4]) => [4,9] OR [9,4]
+# intersectionOfArrays([], [9,4,9,8,4]) => []
+
+# Constraints:
+# 1 <= nums1.length, nums2.length <= 1000
+# 0 <= nums1[i], nums2[i] <= 1000
+ 
+# Follow up:
+# What if the given array is already sorted? How would you optimize your algorithm?
+# What if nums1's size is small compared to nums2's size? Which algorithm is better?
+# What if elements of nums2 are stored on disk, and the memory is limited such that you cannot load all elements into the memory at once?
+
+# for each num in nums1,
+# if not already in dictionary,
+# add to dictionary with value of 1
+# else if in dictionary already:
+# increment value of that key
+
+# for each num in nums2,
+# if in dictionary and value >0,
+# add key to results list and decrement value by 1
+# if not in dictionary, do nothing
+
+# return results list
+
+def intersectionOfArrays(nums1, nums2):
+
+    nums1_dict = {}
+    intersection = []
+
+    for num in nums1:
+        nums1_dict[num] = nums1_dict.get(num, 0) + 1
+    
+    for num2 in nums2:
+        if num2 in nums1_dict and nums1_dict[num2]:
+            intersection.append(num2)
+            nums1_dict[num2] -= 1
+            
+    return intersection
+
+
 ###** July 23, 2021 - longest prefix **###
 
 # Write a function to find the longest common prefix string amongst an array of strings.
